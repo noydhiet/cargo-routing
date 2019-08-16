@@ -3,24 +3,30 @@ package datastruct
 type GetStatusDeliveryRequest struct {
 	ROUTE_ID   int `json:"route_id"`
 	ITENARY_ID int `json:"itenary_id"`
-	CARGO_ID   int `json:"cargo_id"`
-	VOYAGE_ID  int `json:"voyage_id"`
 }
 
 type GetStatusDeliveryResponse struct {
-	ROUTING_STATUS   string `json:"routing_status"`
-	TRANSPORT_STATUS string `json:"transport_status"`
-	LASTKNOWN_LOC    string `json:"lastknown_loc"`
+	ROUTE_ID            int    `json:"route_id"`
+	ITENARY_ID          int    `json:"itenary_id"`
+	ROUTING_STATUS      string `json:"routing_status"`
+	TRANSPORT_STATUS    string `json:"transport_status"`
+	LAST_KNOWN_LOCATION string `json:"last_known_location"`
 }
 
-type UpdateStatusDeliveryRequest struct {
-	ROUTE_ID         int    `json:"route_id"`
-	ITENARY_ID       int    `json:"itenary_id"`
-	ROUTING_STATUS   string `json:"routing_status"`
-	TRANSPORT_STATUS string `json:"transport_status"`
-	LASTKNOWN_LOC    string `json:"lastknown_loc"`
+type UpdateStatusRequest struct {
+	ROUTE_ID   int `json:"route_id"`
+	ITENARY_ID int `json:"itenary_id"`
 }
 
-type UpdateStatusDeliveryResponse struct {
+type UpdateStatusResponse struct {
 	MESSAGE string `json:"message"`
+}
+
+type Delivery struct { //using datastruct as an input also output
+	DELIVERY_ID         int
+	ROUTE_ID            int
+	ITENARY_ID          int
+	ROUTING_STATUS      string
+	TRANSPORT_STATUS    string
+	LAST_KNOWN_LOCATION string
 }
