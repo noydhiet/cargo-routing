@@ -1,8 +1,9 @@
 package datastruct
 
 type GetStatusDeliveryRequest struct {
-	ROUTE_ID   int `json:"route_id"`
-	ITENARY_ID int `json:"itenary_id"`
+	ROUTE_ID    int `json:"route_id"`
+	ITENARY_ID  int `json:"itenary_id"`
+	DELIVERY_ID int `json:"delivery_id"`
 }
 
 type GetStatusDeliveryResponse struct {
@@ -19,7 +20,12 @@ type UpdateStatusRequest struct {
 }
 
 type UpdateStatusResponse struct {
-	MESSAGE string `json:"message"`
+	ROUTE_ID            int    `json:"route_id"`
+	ITENARY_ID          int    `json:"itenary_id"`
+	ROUTING_STATUS      string `json:"routing_status"`
+	TRANSPORT_STATUS    string `json:"transport_status"`
+	LAST_KNOWN_LOCATION string `json:"last_known_location"`
+	MESSAGE             string `json:"message"`
 }
 
 type Delivery struct { //using datastruct as an input also output

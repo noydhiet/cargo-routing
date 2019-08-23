@@ -2,6 +2,8 @@ package service
 
 import (
 	"database/sql"
+	//"kit/log"
+	//"os"
 
 	dt "cargo-tracking/datastruct"
 
@@ -11,9 +13,9 @@ import (
 func dbcon() (db *sql.DB) {
 	dbDriver := "mysql"
 	dbUser := "root"
-	dbPass := "PASSWORD"
-	dbName := "db_go"
-	dbIp := "192.168.20.9"
+	dbPass := ""
+	dbName := "cargo"
+	dbIp := "127.0.0.1"
 
 	db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@tcp("+dbIp+")/"+dbName)
 
@@ -25,7 +27,7 @@ func dbcon() (db *sql.DB) {
 
 func GetStatus(a dt.Delivery) []dt.Delivery {
 	db := dbcon()
-	selDb, err := db.Query("SELECT * from t_trx_delivery where itenary_id=?", a.ITENARY_ID)
+	selDb, err := db.Query("SELECT * from t_trx_delivery where fk_id_itenary=? or fk_id_route_spec=? or idt_delivery=?", a.ITENARY_ID, a.ROUTE_ID, a.DELIVERY_ID)
 
 	if err != nil {
 		panic(err.Error())

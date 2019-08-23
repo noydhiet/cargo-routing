@@ -41,13 +41,14 @@ func makeGetStatusEndpoint(i GetStatus) endpoint.Endpoint {
 		paramDel := dt.Delivery{}
 		paramDel.ROUTE_ID = req.ROUTE_ID
 		paramDel.ITENARY_ID = req.ITENARY_ID
+		paramDel.DELIVERY_ID = req.DELIVERY_ID
 		i.GetStatusService(ctx, paramDel)
 		return datastruct.GetStatusDeliveryResponse{
 			ROUTE_ID:            1,
 			ITENARY_ID:          1,
-			ROUTING_STATUS:      "unload",
-			TRANSPORT_STATUS:    "inport",
-			LAST_KNOWN_LOCATION: "surabaya",
+			ROUTING_STATUS:      "Unload",
+			TRANSPORT_STATUS:    "Inport",
+			LAST_KNOWN_LOCATION: "Surabaya",
 		}, nil
 	}
 }
