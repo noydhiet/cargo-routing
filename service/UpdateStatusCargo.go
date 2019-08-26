@@ -4,15 +4,15 @@ import (
 	"database/sql"
 	"net/http"
 	_ "github.com/go-sql-driver/mysql"
-	dt "cargo-tracking/datastruct"
+	dt "cargo-routing/datastruct"
 )
 
 func dbConn() (db *sql.DB) {
 	dbDriver := "mysql"
 	dbUser := "root"
-	dbPass := "PASSWORD"
-	dbName := "db_go"
-	dbIP := "192.168.20.7"
+	dbPass := ""
+	dbName := "cargo"
+	dbIP := "127.0.0.1"
 	db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@tcp("+dbIP+")/"+dbName)
 
 	if err != nil {
@@ -21,9 +21,9 @@ func dbConn() (db *sql.DB) {
 	return db
 }
 
-func UpdateStatus(a dt.UpdateStatusDeliveryRequest, dt.UpdateStatusDeliveryResponse)  {
+func updateStatus(a dt.UpdateStatusDeliveryRequest, dt.UpdateStatusDeliveryResponse)  {
 	
-	var message string
+	// var message string
 	
 	db := dbConn()
 
@@ -34,7 +34,7 @@ func UpdateStatus(a dt.UpdateStatusDeliveryRequest, dt.UpdateStatusDeliveryRespo
 	}
 
 	updForm.Exec(dt.UpdateStatusDeliveryRequest)
-	message := "data berhasil di update"
+	message :="data berhasil di update"
 	return message
 	defer db.Close()
 
